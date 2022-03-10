@@ -1,0 +1,3 @@
+setup:
+  project: vercel-gitops-secrets-nextjs
+  config: dev
