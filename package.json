@@ -1,6 +1,7 @@
 {
   "name": "vercel-gitops-secrets-next.js",
   "private": true,
+  "type": "module",
   "scripts": {
     "encrypt-secrets": "node ./bin/encrypt-secrets.js",
     "encrypt-secrets-dev": "DOPPLER_TOKEN=$(doppler configs tokens create temp --max-age 1m --plain) GITOPS_SECRETS_MASTER_KEY=$(openssl rand -hex 16) npm run encrypt-secrets",
@@ -12,7 +13,7 @@
     "prettier-check": "prettier --check ."
   },
   "dependencies": {
-    "gitops-secrets": "git+https://github.com/DopplerHQ/gitops-secrets-nodejs.git",
+    "gitops-secrets": "0.0.1",
     "next": "^12.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"

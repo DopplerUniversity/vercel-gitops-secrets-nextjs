@@ -1,5 +1,7 @@
-import Head from "next/head";
-import Link from "next/link";
+import HeadModule from "next/head";
+const Head = HeadModule.default;
+import LinkModule from "next/link";
+const Link = LinkModule.default;
 import styles from "../styles/Home.module.css";
 import { loadSecrets } from "../lib/secrets";
 

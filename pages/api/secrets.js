@@ -1,4 +1,4 @@
-const { loadSecrets } = require("../../lib/secrets");
+import { loadSecrets } from "../../lib/secrets";
 const secrets = loadSecrets();
 
 export default function handler(req, res) {
