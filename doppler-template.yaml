@@ -1,5 +1,5 @@
 projects:
-  - name: 'vercel-gitops-secrets-nextjs'
+  - name: 'vercel-gitops-secrets'
     description: ''
     environments:
       - slug: 'dev'

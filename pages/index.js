@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css'
-import secrets from '../lib/secrets'
+import { loadSecrets } from "../lib/secrets";
 
 export default function Home({ welcomeMessage, secretsSize }) {
   return (
@@ -28,8 +28,8 @@ export default function Home({ welcomeMessage, secretsSize }) {
 }
 
 export async function getServerSideProps() {
-  const config = secrets.fetch()
-  const secretsSize = parseFloat(Buffer.byteLength(JSON.stringify(config), 'utf8') / 1024).toFixed(2)
+  const secrets = loadSecrets().populateEnv()
+  const secretsSize = parseFloat(Buffer.byteLength(JSON.stringify(secrets), 'utf8') / 1024).toFixed(2)
   return {
     props: {
       welcomeMessage: process.env.WELCOME_MESSAGE,

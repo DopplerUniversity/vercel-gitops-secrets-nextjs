@@ -1,12 +1,8 @@
 # Vercel GitOps Secrets with Next.js
 
-This is a reference repository for using [GitOps Secrets for Node.js](https://github.com/DopplerUniversity/gitops-secrets-nodejs/tree/simplified-api) on Vercel to work around the 4KB environment variable limit per deployment.
+This is a reference repository for using [GitOps Secrets for Node.js](https://github.com/DopplerUniversity/gitops-secrets-nodejs) on Vercel to work around the 4KB environment variable limit per deployment.
 
-It's useful for giving the GitOps Secrets workflow a test-drive before altering an existing application, as well as providing a starting point for the pieces you'll need such as:
-
-- An [encryption script](./bin/encrypt-secrets.js)
-- A [secrets module](./lib/secrets.js) for runtime secrets decryption
-- How to [use secret in a page ](./pages/index.js) via `getServerSideProps`
+It's a great way to give the GitOps Secrets workflow a test-drive!
 
 ## Requirements
 
@@ -29,7 +25,7 @@ doppler login
 
 ### Vercel
 
-Click the below button create the application in Vercel:
+Click the below button to create the application in Vercel:
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FDopplerUniversity%2Fvercel-gitops-secrets-nextjs&project-name=gitops-secrets-nextjs&repo-name=vercel-gitops-secrets-nextjs)
 
@@ -58,28 +54,39 @@ node -e 'process.stdout.write(require("crypto").randomBytes(16).toString("hex"))
 
 ### Doppler
 
-Create the sample project in Doppler and link to this directory:
+Import the sample project to Doppler:
+
+[![Import to Doppler](https://raw.githubusercontent.com/DopplerUniversity/app-config-templates/main/doppler-button.svg)](https://dashboard.doppler.com/workplace/template/import?template=https://github.com/DopplerUniversity/vercel-gitops-secrets-nextjs/blob/main/doppler-template.yaml)
+
+Configure your local environment by changing into the root level of the cloned repository and run:
 
 ```sh
-doppler import
 doppler setup --no-interactive
 ```
 
-Create Doppler Service Tokens for each environment and add to each Vercel environment:
+Then create Doppler Service Tokens for each environment in Vercel:
 
 ```sh
-echo -n "$(doppler configs tokens create vercel-gitops --config dev --plain)" | vercel env add DOPPLER_TOKEN development
+echo -n "$(doppler configs tokens create vercel-gitops --config dev --plain)"  | vercel env add DOPPLER_TOKEN development
 echo -n "$(doppler configs tokens create vercel-gitops --config prev --plain)" | vercel env add DOPPLER_TOKEN preview
-echo -n "$(doppler configs tokens create vercel-gitops --config prd --plain)" | vercel env add DOPPLER_TOKEN production
+echo -n "$(doppler configs tokens create vercel-gitops --config prd --plain)"  | vercel env add DOPPLER_TOKEN production
 ```
 
 ## Testing
 
-To test that your secret updates in Doppler are making it into the Vercel deployments, change the `WELCOME_MESSAGE` secret and check the home page updates accordingly.
+You can quickly test the `encrypt-secrets` script locally with throwaway `DOPLER_TOKEN` and `GITOPS_SECRETS_MASTER_KEY` environment variables by running:
 
-### Development
+```sh
+GITOPS_SECRETS_MASTER_KEY="$(node -e 'process.stdout.write(require("crypto").randomBytes(16).toString("hex"))')" \
+DOPPLER_TOKEN="$(doppler configs tokens create temp --max-age 1m --plain)" \
+npm run encrypt-secrets
+```
 
-Test the Development environment by running the application:
+The easiest way to verify updates in Doppler being propagated is by changing the `WELCOME_MESSAGE` secret.
+
+## Local Development
+
+Local development works just like in Vercel thanks to the Vercel CLI:
 
 ```sh
 npm install
@@ -90,7 +97,7 @@ The index page is at [http://localhost:3000/](http://localhost:3000/) and an API
 
 ### Preview
 
-Test by triggering a Preview deployment:
+Trigger a Preview deployment by running:
 
 ```sh
 vercel
@@ -98,7 +105,7 @@ vercel
 
 ### Production
 
-Test by triggering a Production deployment:
+Trigger a Production deployment by running:
 
 ```sh
 vercel --prod
