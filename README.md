@@ -1,8 +1,10 @@
 # Vercel GitOps Secrets with Next.js
 
-This is a reference repository for using [GitOps Secrets for Node.js](https://github.com/DopplerUniversity/gitops-secrets-nodejs) on Vercel to work around the 4KB environment variable limit per deployment.
+This is a reference repository for using [GitOps Secrets for Node.js](https://github.com/DopplerHQ/gitops-secrets-nodejs) on Vercel to work around the 4KB environment variable limit per deployment.
 
 It's a great way to give the GitOps Secrets workflow a test-drive!
+
+And don't worry, it doesn't use any real secrets.
 
 ## Requirements
 

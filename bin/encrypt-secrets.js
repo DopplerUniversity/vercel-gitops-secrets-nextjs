@@ -1,3 +1,8 @@
 const secrets = require("gitops-secrets");
 
-secrets.build(secrets.providers.doppler.fetch, { path: "lib/secrets.js" });
+async function main() {
+  const payload = await secrets.providers.doppler.fetch();
+  secrets.build(payload, { path: "lib/secrets.js" });
+}
+
+main();

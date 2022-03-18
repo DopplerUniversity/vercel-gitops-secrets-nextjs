@@ -10,13 +10,13 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "gitops-secrets": "git+https://github.com/DopplerUniversity/gitops-secrets-nodejs.git",
+    "gitops-secrets": "git+https://github.com/DopplerHQ/gitops-secrets-nodejs.git",
     "next": "^12.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
   "devDependencies": {
-    "eslint": "8.9.0",
-    "eslint-config-next": "12.1.0"
+    "eslint": "^8.9.0",
+    "eslint-config-next": "^12.1.0"
   }
 }
