@@ -54,7 +54,7 @@ node -e 'process.stdout.write(require("crypto").randomBytes(16).toString("hex"))
 
 ### Doppler
 
-Import the sample project to Doppler:
+Import the sample project to Doppler by clicking the **Import to Doppler** button:
 
 [![Import to Doppler](https://raw.githubusercontent.com/DopplerUniversity/app-config-templates/main/doppler-button.svg)](https://dashboard.doppler.com/workplace/template/import?template=https://github.com/DopplerUniversity/vercel-gitops-secrets-nextjs/blob/main/doppler-template.yaml)
 
@@ -74,7 +74,7 @@ echo -n "$(doppler configs tokens create vercel-gitops --config prd --plain)"  |
 
 ## Testing
 
-You can quickly test the `encrypt-secrets` script locally with throwaway `DOPLER_TOKEN` and `GITOPS_SECRETS_MASTER_KEY` environment variables by running:
+You can quickly test the `encrypt-secrets` script locally with throwaway `DOPPLER_TOKEN` and `GITOPS_SECRETS_MASTER_KEY` environment variables by running:
 
 ```sh
 GITOPS_SECRETS_MASTER_KEY="$(node -e 'process.stdout.write(require("crypto").randomBytes(16).toString("hex"))')" \
@@ -95,7 +95,7 @@ vercel dev
 
 The index page is at [http://localhost:3000/](http://localhost:3000/) and an API endpoint is at [http://localhost:3000/api/secrets](http://localhost:3000/api/secrets)
 
-### Preview
+## Preview
 
 Trigger a Preview deployment by running:
 
@@ -103,7 +103,7 @@ Trigger a Preview deployment by running:
 vercel
 ```
 
-### Production
+## Production
 
 Trigger a Production deployment by running:
 
@@ -115,11 +115,11 @@ vercel --prod
 
 In the Vercel dashboard, create a Production deploy webhook by navigating to **Settings** > **Git**, then click the **Create Hook** button.
 
-Copy the webhook URL, then from the [Doppler dashboard](https://dashboard.doppler.com/workplace/projects/vercel-gitops-secrets-nextjs), click **Webhooks** from left menu, then click the **+ Add** button, pasting in the webhook URL. Then once the webhook has been created, check the **PRD** checkbox.
+Copy the webhook URL, then from the [Doppler dashboard](https://dashboard.doppler.com/workplace/projects/vercel-gitops-secrets-nextjs) and click **Webhooks** from left menu. Click the **+ Add** button, pasting in the webhook URL and on the webhook list page, check the **PRD** checkbox.
 
 To test the webhook, navigate to the [Production environment](https://dashboard.doppler.com/workplace/projects/vercel-gitops-secrets-nextjs/configs/prd) and change the `WELCOME_MESSAGE` secret, then click the **Save** button.
 
-Then back in the Vercel dashboard, navigate to the **Deployments** tab and you should see a Production deploy in progress.
+Head back to the Vercel dashboard and you should see a Production deploy in progress and once deployed, the welcome message should have changed.
 
 ## Summary
 
