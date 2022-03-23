@@ -7,7 +7,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prettier": "prettier --write .",
+    "prettier-check": "prettier --check ."
   },
   "dependencies": {
     "gitops-secrets": "git+https://github.com/DopplerHQ/gitops-secrets-nodejs.git",
@@ -16,7 +18,11 @@
     "react-dom": "^17.0.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.17.8",
+    "@babel/eslint-parser": "^7.17.0",
     "eslint": "^8.9.0",
-    "eslint-config-next": "^12.1.0"
+    "eslint-config-next": "^12.1.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-security": "^1.4.0"
   }
 }
